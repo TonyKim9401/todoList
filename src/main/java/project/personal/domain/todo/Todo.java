@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import project.personal.domain.BaseEntity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 @Getter
 @Entity
@@ -22,8 +20,6 @@ public class Todo extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private TodoStatus todoStatus;
-
-    private int totalPrice;
 
     private LocalDateTime registeredDateTime;
 
