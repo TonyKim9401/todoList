@@ -10,10 +10,4 @@ import java.util.List;
 @NoArgsConstructor
 public class TodoCreateServiceRequest {
 
-    private List<String> productNumbers;
-
-    @Builder
-    private TodoCreateServiceRequest(List<String> productNumbers) {
-        this.productNumbers = productNumbers;
-    }
 }
