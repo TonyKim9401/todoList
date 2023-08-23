@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import project.personal.api.ApiResponse;
+import project.personal.api.controller.todo.request.TodoCreateRequest;
+import project.personal.api.service.todo.TodoService;
+import project.personal.api.service.todo.response.TodoResponse;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +23,7 @@ public class TodoController {
     @PostMapping("/api/v1/orders/new")
     public ApiResponse<TodoResponse> createOrder(@Valid @RequestBody TodoCreateRequest request) {
         LocalDateTime registeredDateTime =  LocalDateTime.now();
-        TodoResponse order = todoService.createTodo(request.toServiceRequest(), registeredDateTime);
+        TodoResponse order = todoService.createTodo(registeredDateTime);
         return ApiResponse.ok(order);
     }
 }
