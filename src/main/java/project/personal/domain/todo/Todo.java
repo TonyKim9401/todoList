@@ -5,42 +5,56 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import project.personal.domain.BaseEntity;
+import project.personal.domain.user.User;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@Table
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Todo extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String todoTitle;
+
+    private String todoContent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     @Enumerated(EnumType.STRING)
     private TodoStatus todoStatus;
-
-    private LocalDateTime registeredDateTime;
 
 
 
     @Builder
-    private Todo(TodoStatus todoStatus, LocalDateTime registeredDateTime) {
+    private Todo(String todoTitle, String todoContent, TodoStatus todoStatus) {
+        this.todoTitle = todoTitle;
+        this.todoContent = todoContent;
         this.todoStatus = todoStatus;
-        this.registeredDateTime = registeredDateTime;
     }
 
 
-    public static Todo create(LocalDateTime registeredDateTime) {
+    public static Todo create(String todoTitle, String todoContent) {
         return Todo.builder()
-                .todoStatus(TodoStatus.INIT)
-                .registeredDateTime(registeredDateTime)
+                .todoTitle(todoTitle)
+                .todoContent(todoContent)
+                .todoStatus(TodoStatus.CREATE)
                 .build();
     }
 
-    public void todoCompleted(LocalDateTime time) {
-        this.registeredDateTime = time;
-        this.todoStatus = TodoStatus.COMPLETED;
+    public void todoCompleted() {
+        this.todoStatus = TodoStatus.COMPLETE;
     }
+
+    public void todoStart() {
+        this.todoStatus = TodoStatus.START;
+    }
+
 }
