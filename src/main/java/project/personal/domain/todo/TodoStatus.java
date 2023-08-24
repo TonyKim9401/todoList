@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum TodoStatus {
 
-    INIT("생성"),
+    CREATE("생성"),
+    START("시작"),
     CANCEL("취소"),
-    COMPLETED("완료"),
-    FAILED("미완료");
+    COMPLETE("완료"),
+    DELETE("삭제");
 
     private final String text;
 
