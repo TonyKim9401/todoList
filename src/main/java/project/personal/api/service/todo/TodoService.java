@@ -24,8 +24,8 @@ public class TodoService {
      * 동시성 고민
      * optimistic lock / pessimistic lock / ...
      */
-    public TodoResponse createTodo(LocalDateTime registeredDateTime) {
-        Todo todo = Todo.create(registeredDateTime);
+    public TodoResponse createTodo(TodoCreateServiceRequest request) {
+        Todo todo = Todo.create(request.getTodoTitle(), request.getTodoContent());
         Todo saveTodo = todoRepository.save(todo);
         return TodoResponse.of(saveTodo);
     }
