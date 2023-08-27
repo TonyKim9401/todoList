@@ -11,10 +11,8 @@ import java.util.List;
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-    @Query("select t from Todo t where t.registeredDateTime >= :startDateTime " +
-            "and t.registeredDateTime < :endDateTime " +
-            "and t.todoStatus = :todoStatus")
+    @Query("select t from Todo t where t.createdDateTime >= :startDateTime " +
+            "and t.createdDateTime < :endDateTime")
     List<Todo> findTodoBy(@Param("startDateTime") LocalDateTime startDateTime,
-                             @Param("endDateTime") LocalDateTime endDateTime,
-                             @Param("todoStatus") TodoStatus todoStatus);
+                             @Param("endDateTime") LocalDateTime endDateTime);
 }

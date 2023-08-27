@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.personal.domain.user.User;
 
-import java.util.List;
-
 @Getter
 @NoArgsConstructor
 public class TodoCreateServiceRequest {
@@ -16,8 +14,9 @@ public class TodoCreateServiceRequest {
     private User user;
 
     @Builder
-    private TodoCreateServiceRequest(String todoTitle, String todoContent) {
+    private TodoCreateServiceRequest(String todoTitle, String todoContent, User user) {
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
+        this.user = user;
     }
 }

@@ -1,6 +1,5 @@
 package project.personal.api.controller.todo.request;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +21,7 @@ public class TodoCreateRequest {
         return TodoCreateServiceRequest.builder()
                 .todoTitle(todoTitle)
                 .todoContent(todoContent)
+                .user(user)
                 .build();
     }
 }
