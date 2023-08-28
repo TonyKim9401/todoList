@@ -37,7 +37,7 @@ public class TodoService {
         return TodoResponse.of(findTodo);
     }
 
-    public List<TodoResponse> findAll() {
+    public List<TodoResponse> getAllTodos() {
         List<Todo> todos = todoRepository.findAll();
         return todos.stream().map(t -> TodoResponse.of(t))
                 .collect(Collectors.toList());
