@@ -36,14 +36,14 @@ public class TodoRepositoryTest {
 
         todoRepository.saveAll(List.of(유스콘, 토비님, 영한님));
 
-        LocalDateTime now = LocalDateTime.now();
-        LocalDate yesterday = LocalDateTime.now().minusDays(1).toLocalDate();
+        LocalDateTime 종료날짜 = LocalDateTime.now();
+        LocalDate 시작날짜 = LocalDateTime.now().minusDays(1).toLocalDate();
 
         // when
-        List<Todo> todoList = todoRepository.findTodoBy(yesterday.atStartOfDay(), now);
-        log.info("yesterday : {} , now : {}", yesterday, now);
+        List<Todo> todoList = todoRepository.findTodoBetweenStartTimeAndEndTime(시작날짜.atStartOfDay(), 종료날짜);
+        log.info("시작날짜 : {} , 종료날짜 : {}", 시작날짜, 종료날짜);
         todoList.stream().forEach(
-                todo -> log.info("todo time : {} /// {}" ,todo.getCreatedDateTime(), todo.getCreatedBy())
+                todo -> log.info("todo time : {} /// {}" ,todo.getCreatedDate())
 
         );
         log.info("todoList size : " + todoList.size());

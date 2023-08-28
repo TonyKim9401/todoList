@@ -39,8 +39,8 @@ public class TodoResponse {
                 .todoContent(todo.getTodoContent())
                 .todoStatus(todo.getTodoStatus())
                 .user(todo.getUser())
-                .createTime(todo.getCreatedDateTime())
-                .updateTime(todo.getModifiedDateTime())
+                .createTime(todo.getCreatedDate())
+                .updateTime(todo.getModifiedDate())
                 .build();
     }
 }
