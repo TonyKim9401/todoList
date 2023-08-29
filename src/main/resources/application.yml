@@ -3,7 +3,7 @@ spring:
     default: local
 
   datasource:
-    url: jdbc:h2:mem:~/todoListApplication
+    url: jdbc:h2:tcp://localhost/~/todoListApplication
     driver-class-name: org.h2.Driver
     username: sa
     password:

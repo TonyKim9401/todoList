@@ -1,7 +1,7 @@
 package project.personal.api.service.todo.response;
 
-import lombok.Builder;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 import project.personal.domain.todo.Todo;
 import project.personal.domain.todo.TodoStatus;
 import project.personal.domain.user.User;
@@ -9,6 +9,9 @@ import project.personal.domain.user.User;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
 public class TodoResponse {
 
     private Long id;
@@ -18,18 +21,18 @@ public class TodoResponse {
     private TodoStatus todoStatus;
 
     private User user;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
     @Builder
-    private TodoResponse(Long id, String todoTitle, String todoContent, TodoStatus todoStatus, User user, LocalDateTime createTime, LocalDateTime updateTime) {
+    private TodoResponse(Long id, String todoTitle, String todoContent, TodoStatus todoStatus, User user, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.id = id;
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
         this.todoStatus = todoStatus;
         this.user = user;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 
     public static TodoResponse of(Todo todo) {
@@ -39,8 +42,8 @@ public class TodoResponse {
                 .todoContent(todo.getTodoContent())
                 .todoStatus(todo.getTodoStatus())
                 .user(todo.getUser())
-                .createTime(todo.getCreatedDate())
-                .updateTime(todo.getModifiedDate())
+                .createdDate(todo.getCreatedDate())
+                .modifiedDate(todo.getModifiedDate())
                 .build();
     }
 }

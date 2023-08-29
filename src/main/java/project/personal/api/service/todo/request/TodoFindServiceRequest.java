@@ -19,30 +19,31 @@ public class TodoFindServiceRequest extends BaseEntity {
     private String todoContent;
     private Long userId;
     private TodoStatus todoStatus;
-    private LocalDateTime createdDateTime;
-    private LocalDateTime modifiedDateTime;
+
+    private LocalDateTime searchStartDate;
+    private LocalDateTime searchEndDate;
 
     @Builder
-    private TodoFindServiceRequest(Long id, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime createdDateTime, LocalDateTime modifiedDateTime) {
+    private TodoFindServiceRequest(Long id, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
         this.id = id;
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
         this.userId = userId;
         this.todoStatus = todoStatus;
-        this.createdDateTime = createdDateTime;
-        this.modifiedDateTime = modifiedDateTime;
+        this.searchStartDate = searchStartDate;
+        this.searchEndDate = searchEndDate;
     }
 
 
-    public static TodoFindServiceRequest create(Long id, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime createdDateTime, LocalDateTime modifiedDateTime) {
+    public static TodoFindServiceRequest create(Long id, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
         return TodoFindServiceRequest.builder()
                 .id(id)
                 .todoTitle(todoTitle)
                 .todoContent(todoContent)
                 .userId(userId)
                 .todoStatus(todoStatus)
-                .createdDateTime(createdDateTime)
-                .modifiedDateTime(modifiedDateTime)
+                .searchStartDate(searchStartDate)
+                .searchEndDate(searchEndDate)
                 .build();
     }
 
