@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class TodoFindServiceRequest extends BaseEntity {
 
-    private Long id;
+    private Long todoId;
     private String todoTitle;
     private String todoContent;
     private Long userId;
@@ -24,8 +24,8 @@ public class TodoFindServiceRequest extends BaseEntity {
     private LocalDateTime searchEndDate;
 
     @Builder
-    private TodoFindServiceRequest(Long id, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
-        this.id = id;
+    private TodoFindServiceRequest(Long todoId, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
+        this.todoId = todoId;
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
         this.userId = userId;
@@ -35,9 +35,9 @@ public class TodoFindServiceRequest extends BaseEntity {
     }
 
 
-    public static TodoFindServiceRequest create(Long id, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
+    public static TodoFindServiceRequest create(Long todoId, String todoTitle, String todoContent, Long userId, TodoStatus todoStatus, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
         return TodoFindServiceRequest.builder()
-                .id(id)
+                .todoId(todoId)
                 .todoTitle(todoTitle)
                 .todoContent(todoContent)
                 .userId(userId)
