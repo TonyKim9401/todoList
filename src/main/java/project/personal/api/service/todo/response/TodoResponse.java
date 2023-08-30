@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class TodoResponse {
 
-    private Long id;
+    private Long todoId;
 
     private String todoTitle;
     private String todoContent;
@@ -25,8 +25,8 @@ public class TodoResponse {
     private LocalDateTime modifiedDate;
 
     @Builder
-    private TodoResponse(Long id, String todoTitle, String todoContent, TodoStatus todoStatus, User user, LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        this.id = id;
+    private TodoResponse(Long todoId, String todoTitle, String todoContent, TodoStatus todoStatus, User user, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+        this.todoId = todoId;
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
         this.todoStatus = todoStatus;
@@ -37,7 +37,7 @@ public class TodoResponse {
 
     public static TodoResponse of(Todo todo) {
         return TodoResponse.builder()
-                .id(todo.getId())
+                .todoId(todo.getTodoId())
                 .todoTitle(todo.getTodoTitle())
                 .todoContent(todo.getTodoContent())
                 .todoStatus(todo.getTodoStatus())
