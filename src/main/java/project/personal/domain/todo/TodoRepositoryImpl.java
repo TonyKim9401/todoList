@@ -23,7 +23,7 @@ public class TodoRepositoryImpl implements TodoRepositoryCustom{
 
     @Override
     public List<TodoResponse> findByCondition(TodoFindServiceRequest condition) {
-        Long todoId = condition.getId();
+        Long todoId = condition.getTodoId();
         String todoTitle = condition.getTodoTitle();
         String todoContent = condition.getTodoContent();
         TodoStatus todoStatus = condition.getTodoStatus();
@@ -32,7 +32,7 @@ public class TodoRepositoryImpl implements TodoRepositoryCustom{
         Long userId = condition.getUserId();
 
         return jpaQueryFactory.select(Projections.bean(TodoResponse.class,
-                        todo.id,
+                        todo.todoId,
                         todo.todoTitle,
                         todo.todoContent,
                         todo.todoStatus,
@@ -53,7 +53,7 @@ public class TodoRepositoryImpl implements TodoRepositoryCustom{
 
     public BooleanExpression todoIdCheck(Long todoId) {
         if (todoId != null) {
-            return todo.id.eq(todoId);
+            return todo.todoId.eq(todoId);
         }
         return null;
     }
