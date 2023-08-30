@@ -9,16 +9,14 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import project.personal.domain.BaseEntity;
-import project.personal.domain.history.TodoHistory;
+import project.personal.domain.history.todo.TodoHistory;
 import project.personal.domain.todo.Todo;
-import project.personal.domain.todo.TodoStatus;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Entity(name = "Users")
+@Entity(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
