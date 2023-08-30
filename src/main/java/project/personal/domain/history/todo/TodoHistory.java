@@ -1,4 +1,4 @@
-package project.personal.domain.todo;
+package project.personal.domain.history.todo;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -9,6 +9,8 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import project.personal.domain.BaseEntity;
+import project.personal.domain.todo.Todo;
+import project.personal.domain.todo.TodoStatus;
 import project.personal.domain.user.User;
 
 @Getter
@@ -17,10 +19,10 @@ import project.personal.domain.user.User;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
-public class Todo extends BaseEntity {
+public class TodoHistory extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long todoId;
+    private Long todoHistoryId;
 
     private String todoTitle;
 
@@ -35,27 +37,19 @@ public class Todo extends BaseEntity {
 
 
     @Builder
-    private Todo(String todoTitle, String todoContent, TodoStatus todoStatus) {
+    private TodoHistory(String todoTitle, String todoContent, TodoStatus todoStatus) {
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
         this.todoStatus = todoStatus;
     }
 
 
-    public static Todo create(String todoTitle, String todoContent) {
-        return Todo.builder()
-                .todoTitle(todoTitle)
-                .todoContent(todoContent)
-                .todoStatus(TodoStatus.CREATE)
+    public static TodoHistory create(Todo todo) {
+        return TodoHistory.builder()
+                .todoTitle(todo.getTodoTitle())
+                .todoContent(todo.getTodoContent())
+                .todoStatus(todo.getTodoStatus())
                 .build();
-    }
-
-    public void todoCompleted() {
-        this.todoStatus = TodoStatus.COMPLETE;
-    }
-
-    public void todoStart() {
-        this.todoStatus = TodoStatus.START;
     }
 
 }
