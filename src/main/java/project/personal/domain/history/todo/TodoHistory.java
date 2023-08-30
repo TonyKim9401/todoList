@@ -1,4 +1,4 @@
-package project.personal.domain.history;
+package project.personal.domain.history.todo;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
