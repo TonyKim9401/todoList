@@ -28,11 +28,15 @@ public class TodoHistory extends BaseEntity {
 
     private String todoContent;
 
+    @Enumerated(EnumType.STRING)
+    private TodoStatus todoStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Todo todo;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @Enumerated(EnumType.STRING)
-    private TodoStatus todoStatus;
 
 
 
