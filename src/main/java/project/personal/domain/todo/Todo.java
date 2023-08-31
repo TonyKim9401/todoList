@@ -25,28 +25,27 @@ public class Todo extends BaseEntity {
     private String todoTitle;
 
     private String todoContent;
+    @Enumerated(EnumType.STRING)
+    private TodoStatus todoStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @Enumerated(EnumType.STRING)
-    private TodoStatus todoStatus;
-
-
-
     @Builder
-    private Todo(String todoTitle, String todoContent, TodoStatus todoStatus) {
+    private Todo(String todoTitle, String todoContent, TodoStatus todoStatus, User user) {
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
         this.todoStatus = todoStatus;
+        this.user = user;
     }
 
 
-    public static Todo create(String todoTitle, String todoContent) {
+    public static Todo create(Todo todo, User user) {
         return Todo.builder()
-                .todoTitle(todoTitle)
-                .todoContent(todoContent)
+                .todoTitle(todo.getTodoTitle())
+                .todoContent(todo.getTodoContent())
                 .todoStatus(TodoStatus.CREATE)
+                .user(user)
                 .build();
     }
 
