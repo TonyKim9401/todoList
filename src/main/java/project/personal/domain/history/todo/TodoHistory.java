@@ -37,22 +37,23 @@ public class TodoHistory extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-
-
-
     @Builder
-    private TodoHistory(String todoTitle, String todoContent, TodoStatus todoStatus) {
+    private TodoHistory(String todoTitle, String todoContent, TodoStatus todoStatus, Todo todo, User user) {
         this.todoTitle = todoTitle;
         this.todoContent = todoContent;
         this.todoStatus = todoStatus;
+        this.todo = todo;
+        this.user = user;
     }
 
 
-    public static TodoHistory create(Todo todo) {
+    public static TodoHistory create(Todo todo, User user) {
         return TodoHistory.builder()
                 .todoTitle(todo.getTodoTitle())
                 .todoContent(todo.getTodoContent())
                 .todoStatus(todo.getTodoStatus())
+                .todo(todo)
+                .user(user)
                 .build();
     }
 
