@@ -45,11 +45,6 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Todo> todos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<TodoHistory> todoHistories = new ArrayList<>();
-
-
-
     @Builder
     private User(String nickName, String email, String phoneNumber) {
         this.nickName = nickName;

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import project.personal.domain.todo.Todo;
 
 @Repository
-public interface TodoHistoryRepository extends JpaRepository<Todo, Long>, TodoHistoryRepositoryCustom {
+public interface TodoHistoryRepository extends JpaRepository<TodoHistory, Long>, TodoHistoryRepositoryCustom {
 }
