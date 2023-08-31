@@ -9,11 +9,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import project.personal.domain.BaseEntity;
-import project.personal.domain.history.todo.TodoHistory;
-import project.personal.domain.todo.Todo;
-
-import java.util.ArrayList;
-import java.util.List;
+import project.personal.domain.user.User;
 
 @Getter
 @Entity(name = "users_history")
@@ -28,6 +24,9 @@ public class UserHistory extends BaseEntity {
     private String nickname;
     private String email;
     private String phoneNumber;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
 
     @Builder
