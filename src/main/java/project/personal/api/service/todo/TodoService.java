@@ -37,14 +37,16 @@ public class TodoService {
         return TodoResponse.of(saveTodo);
     }
 
-    public void updateTodo(TodoUpdateServiceRequest request) {
+    public TodoResponse updateTodo(TodoUpdateServiceRequest request) {
+        Todo todo = null;
         Optional<Todo> findTodo = todoRepository.findById(request.getTodoId());
         if (findTodo.isPresent()) {
-            Todo todo = findTodo.get();
+            todo = findTodo.get();
             todo.update(request);
         } else {
             throw new IllegalArgumentException("해당 id가 존재하지 않습니다. id : " + request.getTodoId());
         }
+        return TodoResponse.of(todo);
     }
 
     public TodoResponse findTodoById(Long todoId) {
