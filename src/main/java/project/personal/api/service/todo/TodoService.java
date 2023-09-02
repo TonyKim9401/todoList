@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.personal.api.service.todo.request.TodoCreateServiceRequest;
+import project.personal.api.service.todo.request.TodoUpdateServiceRequest;
 import project.personal.api.service.todo.response.TodoResponse;
 import project.personal.domain.history.todo.TodoHistory;
 import project.personal.domain.history.todo.TodoHistoryRepository;
@@ -11,6 +12,7 @@ import project.personal.domain.todo.Todo;
 import project.personal.domain.todo.TodoRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -35,6 +37,18 @@ public class TodoService {
         return TodoResponse.of(saveTodo);
     }
 
+    public TodoResponse updateTodo(TodoUpdateServiceRequest request) {
+        Todo todo = null;
+        Optional<Todo> findTodo = todoRepository.findById(request.getTodoId());
+        if (findTodo.isPresent()) {
+            todo = findTodo.get();
+            todo.update(request);
+        } else {
+            throw new IllegalArgumentException("해당 id가 존재하지 않습니다. id : " + request.getTodoId());
+        }
+        return TodoResponse.of(todo);
+    }
+
     public TodoResponse findTodoById(Long todoId) {
         Todo findTodo = todoRepository.findById(todoId).orElseThrow(
                 () -> new IllegalArgumentException("No todoId has found")
@@ -46,6 +60,17 @@ public class TodoService {
         List<Todo> todos = todoRepository.findAll();
         return todos.stream().map(t -> TodoResponse.of(t))
                 .collect(Collectors.toList());
+    }
+
+    public void deleteTodo(Long id) {
+        Optional<Todo> findTodo = todoRepository.findById(id);
+
+        if (findTodo.isPresent()) {
+            todoRepository.deleteById(id);
+            saveTodoHistory(findTodo.get());
+        } else {
+            throw new IllegalArgumentException("해당 id가 존재하지 않습니다. id : " + id);
+        }
     }
 
     /**

@@ -9,6 +9,7 @@ public enum TodoStatus {
 
     CREATE("생성"),
     START("시작"),
+    UPDATE("수정"),
     CANCEL("취소"),
     COMPLETE("완료"),
     DELETE("삭제");

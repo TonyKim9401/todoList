@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import project.personal.api.service.todo.request.TodoUpdateServiceRequest;
 import project.personal.domain.BaseEntity;
 import project.personal.domain.user.User;
 
@@ -57,4 +58,10 @@ public class Todo extends BaseEntity {
         this.todoStatus = TodoStatus.START;
     }
 
+    public void update(TodoUpdateServiceRequest request) {
+        this.todoTitle = request.getTodoTitle();
+        this.todoContent = request.getTodoContent();
+        this.todoStatus = request.getTodoStatus();
+        // user는 바뀔 일이 없을것 같음
+    }
 }
