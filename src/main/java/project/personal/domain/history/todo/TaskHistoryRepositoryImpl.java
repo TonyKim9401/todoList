@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-public class TodoHistoryRepositoryImpl implements TodoHistoryRepositoryCustom {
+public class TaskHistoryRepositoryImpl implements TaskHistoryRepositoryCustom {
 
     private final JPAQueryFactory jpaQueryFactory;
 

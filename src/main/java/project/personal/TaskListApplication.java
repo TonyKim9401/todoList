@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
 @SpringBootApplication
-public class TodolistApplication {
+public class TaskListApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TodolistApplication.class, args);
+		SpringApplication.run(TaskListApplication.class, args);
 	}
 
 }

@@ -3,24 +3,24 @@ package project.personal.api.controller.todo.request;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.personal.api.service.todo.request.TodoCreateServiceRequest;
+import project.personal.api.service.todo.request.TaskCreateServiceRequest;
 import project.personal.domain.user.User;
 
 @Getter
 @NoArgsConstructor
-public class TodoCreateRequest {
+public class TaskCreateRequest {
 
     @NotEmpty(message = "제목은 필수 값 입니다.")
-    private String todoTitle;
+    private String taskTitle;
 
-    private String todoContent;
+    private String taskContent;
 
     private User user;
 
-    public TodoCreateServiceRequest toServiceRequest() {
-        return TodoCreateServiceRequest.builder()
-                .todoTitle(todoTitle)
-                .todoContent(todoContent)
+    public TaskCreateServiceRequest toServiceRequest(User user) {
+        return TaskCreateServiceRequest.builder()
+                .taskTitle(taskTitle)
+                .taskContent(taskContent)
                 .user(user)
                 .build();
     }
