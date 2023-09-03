@@ -17,7 +17,7 @@ public class TodoCreateRequest {
 
     private User user;
 
-    public TodoCreateServiceRequest toServiceRequest() {
+    public TodoCreateServiceRequest toServiceRequest(User user) {
         return TodoCreateServiceRequest.builder()
                 .todoTitle(todoTitle)
                 .todoContent(todoContent)

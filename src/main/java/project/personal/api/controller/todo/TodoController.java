@@ -20,8 +20,8 @@ public class TodoController {
     private final TodoService todoService;
 
     @PostMapping("/api/v1/todo/create/todo")
-    public ApiResponse<TodoResponse> createOrder(@Valid @RequestBody TodoCreateRequest request) {
-        TodoResponse todoResponse = todoService.createTodo(request.toServiceRequest());
+    public ApiResponse<TodoResponse> createTodo(@Valid @RequestBody TodoCreateRequest request) {
+        TodoResponse todoResponse = todoService.createTodo(request.toServiceRequest(null));
         return ApiResponse.ok(todoResponse);
     }
 

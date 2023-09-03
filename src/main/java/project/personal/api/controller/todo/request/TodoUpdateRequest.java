@@ -23,14 +23,6 @@ public class TodoUpdateRequest {
 
     private User user;
 
-    public TodoCreateServiceRequest toServiceRequest() {
-        return TodoCreateServiceRequest.builder()
-                .todoTitle(todoTitle)
-                .todoContent(todoContent)
-                .user(user)
-                .build();
-    }
-
     public TodoUpdateServiceRequest toUpdateServiceRequest() {
         return TodoUpdateServiceRequest.builder()
                 .todoId(todoId)
