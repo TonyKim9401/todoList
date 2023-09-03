@@ -1,4 +1,4 @@
-package project.personal.domain.todo;
+package project.personal.domain.task;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface TodoRepository extends JpaRepository<Todo, Long>, TodoRepositoryCustom {
+public interface TaskRepository extends JpaRepository<Task, Long>, TaskRepositoryCustom {
 
-    @Query("select t from Todo t where t.createdDate >= :startDate " +
+    @Query("select t from Task t where t.createdDate >= :startDate " +
             "and t.createdDate <= :endDate")
-    List<Todo> findTodoBetweenStartTimeAndEndTime(@Param("startDate") LocalDateTime startDate,
+    List<Task> findTaskBetweenStartTimeAndEndTime(@Param("startDate") LocalDateTime startDate,
                              @Param("endDate") LocalDateTime endDate);
 }

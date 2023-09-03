@@ -1,11 +1,11 @@
-package project.personal.domain.todo;
+package project.personal.domain.task;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum TodoStatus {
+public enum TaskStatus {
 
     CREATE("생성"),
     START("시작"),

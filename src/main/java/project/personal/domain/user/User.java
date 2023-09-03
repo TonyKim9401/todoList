@@ -8,10 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import project.personal.domain.BaseEntity;
-import project.personal.domain.history.todo.TodoHistory;
-import project.personal.domain.todo.Todo;
+import project.personal.domain.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,6 @@ import java.util.List;
  */
 @Getter
 @Entity(name = "users")
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
@@ -43,7 +40,7 @@ public class User extends BaseEntity {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Todo> todos = new ArrayList<>();
+    List<Task> tasks = new ArrayList<>();
 
     @Builder
     private User(String nickName, String email, String phoneNumber) {

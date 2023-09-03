@@ -13,7 +13,6 @@ import project.personal.domain.user.User;
 
 @Getter
 @Entity(name = "users_history")
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
