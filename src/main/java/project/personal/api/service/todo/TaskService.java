@@ -24,7 +24,6 @@ public class TaskService {
 
     private final TaskHistoryRepository taskHistoryRepository;
 
-
     /**
      * 동시성 고민
      * optimistic lock / pessimistic lock / ...
