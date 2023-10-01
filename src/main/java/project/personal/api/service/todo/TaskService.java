@@ -27,6 +27,7 @@ public class TaskService {
      * 동시성 고민
      * optimistic lock / pessimistic lock / ...
      */
+
     public TaskResponse createTask(TaskCreateServiceRequest request) {
         Task todo = Task.create(request.toTaskEntity(), null);
         Task saveTask = taskRepository.save(todo);
